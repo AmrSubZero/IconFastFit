@@ -1,0 +1,26 @@
+Icon Fast Fit CEP 1.1.3
+
+CEP panel install location:
+%APPDATA%\Adobe\CEP\extensions\IconFastFit
+
+Global Photoshop script:
+[Photoshop installation]\Presets\Scripts\Icon Fast Fit.jsx
+
+Shared settings file:
+%APPDATA%\Adobe\CEP\extensions\IconFastFit\settings.ini
+
+Install-Windows.bat installs the CEP panel into the current user's AppData without elevation. It uses PowerShell Copy-Item, verifies the CEP manifest, and writes diagnostics to %TEMP%\IconFastFit-install.log on failure.
+
+Install-Global-Shortcut.ps1 separately requests administrator permission only for the global Photoshop Scripts-menu command.
+
+The panel uses host/host.jsx through CEP evalScript. The global Scripts-menu command loads the same host/host.jsx and calls IconFastFit.runFromSettings(). Both paths share the same fit, styling, clipping, and deselection behavior.
+
+No success alert is shown. The global command shows an alert only for actionable errors.
+
+CEP debug mode is enabled by Install-Windows.bat for CSXS.9 through CSXS.14 to allow manual unsigned development installation. This does not sign the extension.
+
+Photoshop runtime testing is still required.
+
+Installer update: Uses .NET directory creation/write testing, and falls back to machine-wide Adobe CEP folders after a UAC prompt when per-user AppData is inaccessible.
+
+Hex input update (1.1.3): Color Overlay and Solid Color now each have a dedicated editable HEX text field beside the color swatch. Supports typing and paste in #RRGGBB or RRGGBB format. Keyboard and clipboard events are isolated from Photoshop shortcuts while the HEX field is focused. Invalid active color values block the fit action until corrected.

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Icon Fast Fit</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="brand-header">
+      <div class="brand-mark"><img src="icons/icon-96.png" alt="Icon Fast Fit" /></div>
+      <div class="brand-copy">
+        <div class="eyebrow">PHOTOSHOP WORKFLOW</div>
+        <h1>Icon Fast Fit</h1>
+        <p>Place. Fit. Align. Done.</p>
+      </div>
+      <div class="version-tag">CEP 1.1.3</div>
+    </header>
+
+    <section class="run-card">
+      <div class="run-card-top">
+        <div>
+          <div class="section-kicker">QUICK ACTION</div>
+          <h2>Fit active icon</h2>
+        </div>
+        <span class="status-dot" aria-hidden="true"></span>
+      </div>
+      <p class="run-description">Scale the active PNG layer proportionally, then center it inside the current Photoshop selection.</p>
+      <button id="runFit" class="primary-button" type="button">
+        <span class="button-icon">↔</span>
+        <span>FIT ICON TO SELECTION</span>
+        <span class="button-arrow">↗</span>
+      </button>
+      <div class="workflow-hint"><span class="hint-number">1</span> Make a selection <span class="hint-separator">·</span> <span class="hint-number">2</span> Select your PNG layer <span class="hint-separator">·</span> <span class="hint-number">3</span> Run</div>
+      <div id="statusMessage" class="status-message" role="status">Ready when your selection and icon layer are set.</div>
+    </section>
+
+    <section class="settings-section">
+      <div class="section-heading">
+        <div><div class="section-kicker">01 / SIZE &amp; ALIGNMENT</div><h2>Fit settings</h2></div>
+        <span class="section-icon">⌗</span>
+      </div>
+      <div class="setting-card">
+        <div class="setting-label-row"><label for="fitSize">Icon fit size</label><output id="fitSizeValue" for="fitSize">30%</output></div>
+        <input id="fitSize" class="range-control" type="range" min="0" max="100" step="1" value="30" />
+        <div class="range-scale"><span>0%</span><span>50%</span><span>100%</span></div>
+        <p class="field-help">Maximum size relative to both selection width and height. The icon keeps its proportions. At 0%, it is only centered.</p>
+      </div>
+    </section>
+
+    <section class="settings-section">
+      <div class="section-heading">
+        <div><div class="section-kicker">02 / APPEARANCE</div><h2>Layer styling</h2></div>
+        <span class="section-icon">◈</span>
+      </div>
+      <div class="option-card">
+        <div class="option-main">
+          <div class="option-symbol overlay-symbol">◉</div>
+          <div class="option-copy"><div class="option-title">Color Overlay</div><div class="option-subtitle">Apply a non-destructive layer style</div></div>
+          <label class="switch" aria-label="Enable Color Overlay"><input id="enableOverlay" type="checkbox" /><span class="switch-track"></span></label>
+        </div>
+        <div id="overlayOptions" class="color-options is-disabled">
+          <label class="color-label" for="overlayColor">Overlay color</label>
+          <div class="color-input-wrap"><input id="overlayColor" class="color-swatch" type="color" value="#18BDB5" aria-label="Choose overlay color" /><input id="overlayHex" class="hex-input" type="text" value="#18BDB5" maxlength="7" placeholder="#RRGGBB" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-label="Overlay color hexadecimal value" title="Type or paste a HEX color, for example #A50000" /></div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-main">
+          <div class="option-symbol fill-symbol">▧</div>
+          <div class="option-copy"><div class="option-title">Solid Color layer</div><div class="option-subtitle">Create a clipped fill above the icon</div></div>
+          <label class="switch" aria-label="Create Solid Color layer"><input id="enableSolidFill" type="checkbox" /><span class="switch-track"></span></label>
+        </div>
+        <div id="fillOptions" class="color-options is-disabled">
+          <label class="color-label" for="fillColor">Fill color</label>
+          <div class="color-input-wrap"><input id="fillColor" class="color-swatch" type="color" value="#FFFFFF" aria-label="Choose fill color" /><input id="fillHex" class="hex-input" type="text" value="#FFFFFF" maxlength="7" placeholder="#RRGGBB" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-label="Solid Color hexadecimal value" title="Type or paste a HEX color, for example #A50000" /></div>
+        </div>
+      </div>
+      <p class="field-help panel-note">When enabled, the Solid Color fill layer is placed directly above the icon and clipped to its transparency, so it colors only the icon. Type or paste a HEX code (for example, #A50000) in the field beside either color swatch.</p>
+    </section>
+
+    <section class="settings-section shortcut-section">
+      <div class="section-heading">
+        <div><div class="section-kicker">03 / WORKFLOW CONTROL</div><h2>Global keyboard shortcut</h2></div>
+        <span class="section-icon">⌨</span>
+      </div>
+      <div class="setting-card shortcut-card">
+        <p class="field-help shortcut-intro">Use Photoshop's native shortcut system. This shortcut works anywhere in Photoshop, even when the Icon Fast Fit panel is not focused.</p>
+        <div class="shortcut-current-row">
+          <div class="shortcut-suggestion-label">SUGGESTED COMBINATION</div>
+          <div class="key-preview"><kbd>CTRL</kbd><kbd>SHIFT</kbd><kbd>ALT</kbd><kbd>F</kbd></div>
+        </div>
+        <div class="shortcut-warning">
+          <strong>One-time Photoshop setup</strong>
+          <ol>
+            <li>Restart Photoshop after installing Icon Fast Fit.</li>
+            <li>Open <b>Edit → Keyboard Shortcuts</b>.</li>
+            <li>Select <b>Application Menus</b>.</li>
+            <li>Expand <b>File → Scripts → Icon Fast Fit</b>.</li>
+            <li>Click the shortcut field, press your preferred combination, then save the shortcut set.</li>
+          </ol>
+          Photoshop assigns the shortcut to the installed script command. It remains available when this panel is closed or unfocused.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-mark"></span><span>ICON FAST FIT</span><span class="footer-version">CEP EXTENSION · 1.1.3</span>
+    </footer>
+  </main>
+  <script src="js/cep-bridge.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>
